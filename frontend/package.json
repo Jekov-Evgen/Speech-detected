@@ -49,6 +49,7 @@
     "mac": {
       "target": "dmg"
     },
-    "publish": null
+    "publish": [],
+    "forceCodeSigning": false
   }
 }
