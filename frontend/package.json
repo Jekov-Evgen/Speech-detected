@@ -12,6 +12,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jekov-Evgen/Speech-detected.git"
+  },
   "type": "commonjs",
   "devDependencies": {
     "electron": "^41.0.2",
