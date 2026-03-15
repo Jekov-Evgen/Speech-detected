@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+backend/dist/
+backend/build/
+backend/uploads/
+backend/speechdetect.db
+backend/.env
+frontend/node_modules/
+frontend/dist/
+release/

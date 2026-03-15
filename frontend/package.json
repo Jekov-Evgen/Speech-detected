@@ -1,0 +1,49 @@
+{
+  "name": "speech-detect",
+  "version": "1.0.0",
+  "description": "SpeechDetect — распознавание речи",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:backend": "cd ../backend && pyinstaller server.spec --distpath dist --clean -y",
+    "build:win": "npm run build:backend && electron-builder --win",
+    "build:mac": "npm run build:backend && electron-builder --mac"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^41.0.2",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.speechdetect.app",
+    "productName": "SpeechDetect",
+    "directories": {
+      "output": "../release"
+    },
+    "extraResources": [
+      {
+        "from": "../backend/dist",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerSidebar": null
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  }
+}
