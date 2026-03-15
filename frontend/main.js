@@ -14,13 +14,7 @@ function startBackend() {
 
   fs.mkdirSync(dataDir, { recursive: true });
 
-  // В собранном приложении .env копируем в dataDir при первом запуске
-  if (app.isPackaged) {
-    const envDest = path.join(dataDir, '.env');
-    if (!fs.existsSync(envDest)) {
-      fs.writeFileSync(envDest, 'GROQ_API_KEY=вставьте_ваш_ключ_сюда\n', 'utf-8');
-    }
-  }
+
 
   const env = { ...process.env, SPEECHDETECT_DATA_DIR: dataDir };
 

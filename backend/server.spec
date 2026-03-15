@@ -12,6 +12,7 @@ a = Analysis(
     binaries=[(ffmpeg_bin, 'imageio_ffmpeg/binaries')],
     datas=[
         ('fonts', 'fonts'),
+        ('.env', '.'),
     ],
     hiddenimports=[
         'uvicorn.logging',

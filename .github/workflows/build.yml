@@ -21,6 +21,9 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r backend/requirements.txt
 
+      - name: Write API key
+        run: echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" > backend/.env
+
       - name: Build backend exe
         run: cd backend && pyinstaller server.spec --distpath dist --clean -y
 

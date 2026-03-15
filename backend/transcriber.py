@@ -17,19 +17,31 @@ model_status = "ready"
 MAX_CHUNK_MB = 24  # Лимит Groq — 25 MB, оставляем запас
 
 
+def _read_env_key(directory: str) -> str:
+    """Прочитать GROQ_API_KEY из .env файла в указанной директории."""
+    env_path = os.path.join(directory, ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("GROQ_API_KEY="):
+                    return line.split("=", 1)[1].strip().strip('"').strip("'")
+    return ""
+
+
 def _get_client() -> Groq:
+    import sys
     api_key = os.environ.get("GROQ_API_KEY", "")
+
+    # 1. Ключ зашитый в бандл (PyInstaller)
+    if not api_key and getattr(sys, 'frozen', False):
+        api_key = _read_env_key(sys._MEIPASS)
+
+    # 2. Ключ из директории данных (dev-режим или пользовательский)
     if not api_key:
-        # Пробуем прочитать из .env файла в директории данных
         data_dir = os.environ.get("SPEECHDETECT_DATA_DIR", os.path.dirname(__file__))
-        env_path = os.path.join(data_dir, ".env")
-        if os.path.exists(env_path):
-            with open(env_path) as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith("GROQ_API_KEY="):
-                        api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
-                        break
+        api_key = _read_env_key(data_dir)
+
     if not api_key:
         raise RuntimeError(
             "GROQ_API_KEY не задан. Создайте файл backend/.env с содержимым:\n"
