@@ -1,12 +1,42 @@
+# ── Python ──────────────────────────────────────────────────────────────────
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.Python
+
+# ── Backend artefacts ────────────────────────────────────────────────────────
 backend/model/
 backend/dist/
 backend/build/
 backend/uploads/
 backend/speechdetect.db
 backend/.env
+
+# ── Frontend / Electron ──────────────────────────────────────────────────────
 frontend/node_modules/
 frontend/dist/
+frontend/.env
+
+# ── Build output ─────────────────────────────────────────────────────────────
 release/
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Logs & temp ───────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.swp
+*.swo
